@@ -633,9 +633,16 @@ local function createButton(key)
 					states[otherKey] = false
 				end
 			end
-      end
+		end
 
-      buttonObjects[key] = {
+		for otherKey, data in pairs(buttonObjects) do
+			if data and data.update then
+				data.update()
+			end
+		end
+	end)
+
+	buttonObjects[key] = {
 		button = btn,
 		title = title,
 		update = updateVisual
